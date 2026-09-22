@@ -54,6 +54,10 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          if gh release view "${{ steps.version.outputs.version }}" >/dev/null 2>&1; then
+            echo "Release already exists, skipping."
+            exit 0
+          fi
           gh release create "${{ steps.version.outputs.version }}" \
             --title "forge ${{ steps.version.outputs.version }}" \
             --notes-file "${{ steps.changelog.outputs.notes_file }}" \
@@ -61,15 +65,19 @@ jobs:
 
       - name: Update Homebrew tap
         env:
-          HOMEBREW_TAP_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+          HOMEBREW_TAP_DEPLOY_KEY: ${{ secrets.HOMEBREW_TAP_DEPLOY_KEY }}
         run: |
+          # Write-enabled deploy key scoped to forge-agentic/homebrew-forge only.
+          mkdir -p ~/.ssh
+          printf '%s\n' "$HOMEBREW_TAP_DEPLOY_KEY" > ~/.ssh/tap_key
+          chmod 600 ~/.ssh/tap_key
+          export GIT_SSH_COMMAND="ssh -i ~/.ssh/tap_key -o IdentitiesOnly=yes"
+
           VERSION="${{ steps.version.outputs.version }}"
           SHA="${{ steps.sha.outputs.sha256 }}"
           URL="${{ steps.sha.outputs.url }}"
 
-          git clone \
-            "https://x-access-token:${HOMEBREW_TAP_TOKEN}@github.com/forge-agentic/homebrew-forge.git" \
-            tap
+          git clone git@github.com:forge-agentic/homebrew-forge.git tap
 
           cd tap
           sed -i \
