@@ -1,6 +1,16 @@
 {
   "name": "forgecli",
-  "version": "0.2.24",
+  "version": "0.2.25",
+  "description": "Idea to product in one command",
+  "homepage": "https://github.com/forge-agentic/forge#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/forge-agentic/forge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/forge-agentic/forge/issues"
+  },
+  "license": "MIT",
   "type": "module",
   "engines": {
     "node": ">=22.5.0"

@@ -2,8 +2,8 @@
 <p align="center"><strong>Idea to product in one command.</strong></p>
 
 <p align="center">
-  <a href="https://github.com/Ddundee/forge/releases/latest">
-    <img alt="Version" src="https://img.shields.io/github/v/release/Ddundee/forge?label=version&color=blue" />
+  <a href="https://github.com/forge-agentic/forge/releases/latest">
+    <img alt="Version" src="https://img.shields.io/github/v/release/forge-agentic/forge?label=version&color=blue" />
   </a>
   <a href="LICENSE">
     <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-green" />
@@ -84,7 +84,7 @@ Every run is persisted as a **session** in `~/.forge/sessions/<id>/`. Sessions a
 ### Homebrew (macOS — recommended)
 
 ```bash
-brew tap Ddundee/forge
+brew tap forge-agentic/forge
 brew install forgecli
 ```
 
@@ -93,7 +93,7 @@ brew install forgecli
 Requires **Node.js 22.5+**.
 
 ```bash
-git clone https://github.com/Ddundee/forge.git
+git clone https://github.com/forge-agentic/forge.git
 cd forge
 npm ci
 npm run build
@@ -296,7 +296,7 @@ Read [`docs/skills.md`](docs/skills.md) for safety, privacy, troubleshooting, an
 ## Development
 
 ```bash
-git clone https://github.com/Ddundee/forge.git
+git clone https://github.com/forge-agentic/forge.git
 cd forge
 npm ci
 
@@ -350,7 +350,7 @@ git push origin v0.2.x
 
 The [release workflow](.github/workflows/release.yml) then:
 - Computes the tarball sha256
-- Updates the formula in [Ddundee/homebrew-forge](https://github.com/Ddundee/homebrew-forge)
+- Updates the formula in [forge-agentic/homebrew-forge](https://github.com/forge-agentic/homebrew-forge)
 - Creates a GitHub Release with a changelog from git log
 
 The version badge above updates automatically when the release is published.

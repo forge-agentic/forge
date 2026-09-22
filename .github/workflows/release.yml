@@ -68,7 +68,7 @@ jobs:
           URL="${{ steps.sha.outputs.url }}"
 
           git clone \
-            "https://x-access-token:${HOMEBREW_TAP_TOKEN}@github.com/Ddundee/homebrew-forge.git" \
+            "https://x-access-token:${HOMEBREW_TAP_TOKEN}@github.com/forge-agentic/homebrew-forge.git" \
             tap
 
           cd tap
